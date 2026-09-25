@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#080808" />
+  <meta name="description" content="Axcel Store — layanan Roblox cepat, jelas, dan praktis. Order via WhatsApp." />
+  <title>AXCEL STORE — Roblox Services</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#070707;
+      --bg-2:#0d0d0e;
+      --surface:#111111;
+      --surface-2:#171717;
+      --surface-3:#1d1d1d;
+      --text:#fff;
+      --muted:#a3a3a3;
+      --muted-2:#707070;
+      --yellow:#ffd400;
+      --yellow-2:#ffb800;
+      --orange:#ff6a00;
+      --orange-2:#ff8a00;
+      --green:#45e887;
+      --border:rgba(255,212,0,.16);
+      --border-strong:rgba(255,212,0,.38);
+      --shadow:0 25px 80px rgba(0,0,0,.35);
+      --shadow-yellow:0 20px 70px rgba(255,175,0,.18);
+      --header:rgba(7,7,7,.72);
+    }
+
+    body.light{
+      --bg:#f7f7f5;
+      --bg-2:#efefed;
+      --surface:#fff;
+      --surface-2:#f7f7f5;
+      --surface-3:#ecece9;
+      --text:#111;
+      --muted:#555;
+      --muted-2:#777;
+      --border:rgba(145,110,0,.16);
+      --border-strong:rgba(145,110,0,.38);
+      --shadow:0 25px 75px rgba(25,25,25,.10);
+      --shadow-yellow:0 20px 70px rgba(255,175,0,.12);
+      --header:rgba(247,247,245,.76);
+    }
+
+    *{margin:0;padding:0;box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      min-height:100vh;
+      font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+      color:var(--text);
+      background:
+        radial-gradient(circle at 50% -8%, rgba(255,204,0,.11), transparent 32%),
+        radial-gradient(circle at 100% 30%, rgba(255,106,0,.08), transparent 25%),
+        var(--bg);
+      overflow-x:hidden;
+      transition:background .35s ease,color .35s ease;
+    }
+    body::before{
+      content:"";position:fixed;inset:0;pointer-events:none;z-index:-4;opacity:.26;
+      background-image:linear-gradient(rgba(255,255,255,.028) 1px, transparent 1px),linear-gradient(90deg,rgba(255,255,255,.028) 1px,transparent 1px);
+      background-size:44px 44px;
+      mask-image:linear-gradient(to bottom,black,transparent 80%);
+    }
+    a{color:inherit}
+    button,a{ -webkit-tap-highlight-color:transparent }
+    .bg-orb{position:fixed;z-index:-3;pointer-events:none;border-radius:999px;filter:blur(95px);opacity:.13;animation:float 16s ease-in-out infinite alternate}
+    .bg-orb.one{width:340px;height:340px;left:-180px;top:160px;background:var(--yellow)}
+    .bg-orb.two{width:360px;height:360px;right:-190px;top:46%;background:var(--orange);animation-delay:-5s}
+    .bg-orb.three{width:300px;height:300px;left:40%;bottom:-170px;background:var(--yellow-2);animation-delay:-10s}
+    @keyframes float{from{transform:translate(0,0) scale(1)}to{transform:translate(38px,-28px) scale(1.08)}}
+
+    .container{width:min(1180px,92%);margin:auto}
+    .section{padding:105px 0}
+    .eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:11px;font-weight:900;letter-spacing:2.3px;color:var(--yellow);text-transform:uppercase}
+    .eyebrow::before{content:"";width:22px;height:2px;background:linear-gradient(90deg,var(--yellow),var(--orange));border-radius:20px}
+    .heading{margin-bottom:42px}
+    .heading h2{margin-top:12px;font-family:"Space Grotesk",sans-serif;font-size:clamp(34px,5vw,54px);line-height:1;font-weight:700;letter-spacing:-1.8px}
+    .heading p{max-width:580px;margin-top:14px;color:var(--muted);font-size:15px;line-height:1.7}
+
+    /* HEADER */
+    header{position:fixed;inset:0 0 auto;z-index:1000;transition:.3s ease}
+    header.scrolled{background:var(--header);backdrop-filter:blur(20px) saturate(150%);-webkit-backdrop-filter:blur(20px) saturate(150%);border-bottom:1px solid var(--border);box-shadow:0 12px 45px rgba(0,0,0,.16)}
+    .nav{width:min(1220px,94%);height:78px;margin:auto;display:flex;align-items:center;gap:18px}
+    .brand{width:210px;flex:none;text-decoration:none;display:flex;flex-direction:column;line-height:.82}
+    .brand-main{font-family:"Space Grotesk",sans-serif;font-style:italic;font-weight:700;font-size:26px;letter-spacing:-2px;background:linear-gradient(100deg,#fff 5%,var(--yellow) 32%,#fff 49%,var(--orange) 68%,#fff 92%);background-size:220% auto;-webkit-background-clip:text;background-clip:text;color:transparent;animation:shine 4.5s linear infinite}
+    .brand-sub{margin-top:8px;font-size:7px;font-weight:900;letter-spacing:3px;color:var(--muted);font-style:normal}
+    @keyframes shine{to{background-position:220% center}}
+    .nav-center{flex:1;display:flex;justify-content:center}
+    .nav-links{display:flex;align-items:center;gap:3px;padding:4px;border:1px solid var(--border);background:rgba(255,255,255,.025);border-radius:999px}
+    .nav-links a{position:relative;text-decoration:none;color:var(--muted);font-size:11px;font-weight:800;padding:11px 16px;border-radius:999px;transition:.25s ease}
+    .nav-links a:hover,.nav-links a.active{color:var(--text);background:rgba(255,212,0,.08)}
+    .nav-links a.active::after{content:"";position:absolute;left:50%;bottom:5px;width:4px;height:4px;border-radius:50%;background:var(--yellow);transform:translateX(-50%);box-shadow:0 0 12px rgba(255,212,0,.8)}
+    .nav-right{display:flex;align-items:center;justify-content:flex-end;gap:10px}
+    .online{display:inline-flex;align-items:center;gap:7px;font-size:9px;font-weight:900;letter-spacing:1px;color:var(--muted)}
+    .online-dot{width:7px;height:7px;background:var(--green);border-radius:50%;box-shadow:0 0 12px rgba(69,232,135,.7);animation:pulse 1.8s infinite}
+    @keyframes pulse{50%{transform:scale(.72);opacity:.55}}
+    .social{display:inline-flex;align-items:center;gap:7px;text-decoration:none;padding:10px 12px;border:1px solid var(--border);border-radius:12px;background:rgba(255,255,255,.025);font-size:10px;font-weight:900;transition:.25s ease}
+    .social:hover{border-color:var(--border-strong);transform:translateY(-2px);background:rgba(255,212,0,.07)}
+    .social svg{width:15px;height:15px}
+    .theme{position:relative;width:56px;height:31px;border:none;border-radius:999px;background:var(--surface-3);box-shadow:inset 0 0 0 1px var(--border);cursor:pointer}
+    .theme-icon{position:absolute;top:8px;font-size:12px;line-height:1;color:var(--muted);z-index:2}.theme-icon:first-child{left:8px}.theme-icon:nth-child(2){right:8px}
+    .theme-slider{position:absolute;top:4px;left:4px;width:23px;height:23px;border-radius:50%;background:linear-gradient(135deg,var(--yellow),var(--orange));box-shadow:0 4px 12px rgba(255,161,0,.28);transition:.3s ease}
+    body.light .theme-slider{left:29px}
+
+    /* HERO */
+    .hero{min-height:780px;padding:150px 0 95px;display:flex;align-items:center;position:relative}
+    .hero-inner{display:grid;grid-template-columns:1.12fr .88fr;gap:55px;align-items:center}
+    .hero-kicker{display:inline-flex;align-items:center;gap:9px;padding:8px 12px;border:1px solid var(--border);border-radius:999px;background:rgba(255,212,0,.05);font-size:10px;font-weight:900;letter-spacing:1.6px;color:var(--yellow)}
+    .hero-title{font-family:"Space Grotesk",sans-serif;font-size:clamp(56px,9vw,108px);line-height:.84;letter-spacing:-6px;font-weight:700;margin-top:25px}
+    .hero-title .outline{display:block;color:transparent;-webkit-text-stroke:1px rgba(255,255,255,.36);font-size:.46em;letter-spacing:2px;margin-top:18px;text-transform:uppercase}
+    .hero-title .accent{display:block;background:linear-gradient(90deg,var(--yellow),var(--orange));-webkit-background-clip:text;background-clip:text;color:transparent}
+    .hero-copy{max-width:635px;margin-top:24px;color:var(--muted);font-size:16px;line-height:1.78}
+    .hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}
+    .btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:49px;padding:0 19px;border-radius:13px;text-decoration:none;font-size:11px;font-weight:900;letter-spacing:.8px;border:1px solid var(--yellow);background:linear-gradient(135deg,var(--yellow),var(--orange));color:#080808;box-shadow:var(--shadow-yellow);transition:.25s ease}
+    .btn:hover{transform:translateY(-3px);filter:saturate(1.1)}
+    .btn.secondary{background:transparent;color:var(--text);border-color:var(--border-strong);box-shadow:none}
+    .btn.secondary:hover{background:rgba(255,212,0,.06)}
+    .hero-meta{display:flex;gap:15px;flex-wrap:wrap;margin-top:21px;color:var(--muted-2);font-size:10px;font-weight:800}
+    .hero-meta strong{color:var(--text)}
+    .hero-visual{position:relative;min-height:470px;display:flex;align-items:center;justify-content:center}
+    .halo{position:absolute;width:390px;height:390px;border-radius:50%;background:radial-gradient(circle,rgba(255,212,0,.17),rgba(255,106,0,.05) 45%,transparent 70%);filter:blur(3px);animation:halo 5s ease-in-out infinite}
+    @keyframes halo{50%{transform:scale(1.06);opacity:.85}}
+    .visual-card{width:min(470px,100%);padding:14px;border:1px solid var(--border-strong);border-radius:28px;background:linear-gradient(145deg,rgba(255,255,255,.06),rgba(255,255,255,.015));box-shadow:var(--shadow),var(--shadow-yellow);transform:rotate(2.5deg);transition:.4s ease}
+    .visual-card:hover{transform:rotate(0deg) translateY(-7px)}
+    .visual-bar{display:flex;align-items:center;justify-content:space-between;padding:4px 4px 12px}.visual-dots{display:flex;gap:5px}.visual-dots span{width:7px;height:7px;border-radius:50%;background:var(--surface-3)}.visual-tag{font-size:8px;font-weight:900;letter-spacing:1.4px;color:var(--muted)}
+    .visual-content{padding:22px;border-radius:20px;overflow:hidden;background:linear-gradient(145deg,#151515,#0b0b0b)}
+    .visual-content::after{content:"";display:block;width:100%;height:1px;margin-top:18px;background:linear-gradient(90deg,transparent,var(--yellow),var(--orange),transparent)}
+    .mock-title{font-family:"Space Grotesk",sans-serif;font-size:30px;letter-spacing:-1px}.mock-title span{color:var(--yellow)}
+    .mock-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin-top:16px}.mock-box{padding:13px;border:1px solid rgba(255,212,0,.11);border-radius:13px;background:rgba(255,255,255,.025)}.mock-box b{font-size:18px}.mock-box small{display:block;margin-top:4px;color:var(--muted-2);font-size:8px}
+    .mock-strip{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:12px;padding:12px 13px;border-radius:13px;background:linear-gradient(90deg,rgba(255,212,0,.11),rgba(255,106,0,.07));font-size:9px;font-weight:800}.mock-strip strong{font-size:12px;color:var(--yellow)}
+
+    /* STATS */
+    .stats{margin-top:-18px}.stats-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.stat{display:flex;align-items:center;gap:13px;min-height:105px;padding:20px;border:1px solid var(--border);border-radius:18px;background:linear-gradient(145deg,rgba(255,255,255,.04),rgba(255,255,255,.015));box-shadow:0 15px 45px rgba(0,0,0,.16)}.stat-icon{width:42px;height:42px;display:grid;place-items:center;border-radius:12px;font-size:16px;background:rgba(255,212,0,.08);border:1px solid var(--border);color:var(--yellow)}.stat-number{display:block;font-family:"Space Grotesk",sans-serif;font-size:22px}.stat-label{display:block;margin-top:4px;color:var(--muted-2);font-size:9px;font-weight:800;letter-spacing:.4px}
+
+    /* SERVICES */
+    .services-wrap{position:relative;overflow:hidden}.services{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;transition:transform .35s ease}
+    .service{position:relative;overflow:hidden;border:1px solid var(--border);border-radius:22px;background:linear-gradient(150deg,rgba(255,255,255,.052),rgba(255,255,255,.015));box-shadow:0 18px 60px rgba(0,0,0,.14);transition:.3s ease}.service::before{content:"";position:absolute;inset:0 auto auto 0;height:3px;width:100%;background:linear-gradient(90deg,var(--yellow),var(--orange));transform:scaleX(0);transform-origin:left;transition:.35s ease}.service:hover{transform:translateY(-8px);border-color:var(--border-strong);box-shadow:var(--shadow),var(--shadow-yellow)}.service:hover::before{transform:scaleX(1)}
+    .service.hot{border-color:rgba(255,106,0,.32)}
+    .hot-badge{position:absolute;top:13px;right:13px;z-index:3;padding:7px 9px;border-radius:999px;background:#0b0b0b;border:1px solid rgba(255,212,0,.28);font-size:8px;font-weight:900;letter-spacing:1.1px;color:var(--yellow)}
+    .service-image{aspect-ratio:16/10;overflow:hidden;background:#0b0b0b}.service-image img{width:100%;height:100%;display:block;object-fit:cover;transition:transform .5s ease}.service:hover .service-image img{transform:scale(1.05)}
+    .service-info{padding:20px}.service-info h3{font-family:"Space Grotesk",sans-serif;font-size:21px}.service-info p{margin-top:8px;color:var(--muted);font-size:12px;line-height:1.65;min-height:40px}.price{margin-top:17px;font-family:"Space Grotesk",sans-serif;font-size:25px;color:var(--yellow)}.order{display:flex;align-items:center;justify-content:center;width:100%;min-height:44px;margin-top:16px;border:1px solid var(--border-strong);border-radius:12px;text-decoration:none;font-size:10px;font-weight:900;letter-spacing:.8px;background:rgba(255,212,0,.06);transition:.25s ease}.order:hover{color:#080808;background:linear-gradient(135deg,var(--yellow),var(--orange));border-color:transparent;transform:translateY(-2px)}
+    .service-controls{display:flex;justify-content:center;gap:8px;margin-top:22px}.slider-arrow{display:grid;place-items:center;width:39px;height:39px;border:1px solid var(--border);border-radius:11px;background:var(--surface);color:var(--text);cursor:pointer;font-size:18px;transition:.2s ease}.slider-arrow:hover{border-color:var(--border-strong);color:var(--yellow)}.dots{display:flex;justify-content:center;gap:6px;margin-top:12px}.dots i{width:6px;height:6px;border-radius:99px;background:var(--surface-3)}.dots i.active{width:20px;background:linear-gradient(90deg,var(--yellow),var(--orange))}
+
+    /* WHY */
+    .why{display:grid;grid-template-columns:repeat(4,1fr);gap:13px}.why-card{padding:25px;border:1px solid var(--border);border-radius:18px;background:rgba(255,255,255,.025);transition:.3s ease}.why-card:hover{transform:translateY(-5px);border-color:var(--border-strong);background:rgba(255,212,0,.045)}.why-icon{width:42px;height:42px;display:grid;place-items:center;border-radius:12px;background:rgba(255,212,0,.08);color:var(--yellow);border:1px solid var(--border);font-size:17px}.why-card h3{margin-top:18px;font-size:16px}.why-card p{margin-top:8px;color:var(--muted);font-size:11px;line-height:1.7}
+
+    /* REVIEWS */
+    .reviews{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.review{padding:22px;border:1px solid var(--border);border-radius:18px;background:linear-gradient(145deg,rgba(255,255,255,.04),rgba(255,255,255,.015))}.person{display:flex;align-items:center;gap:11px}.avatar{width:40px;height:40px;display:grid;place-items:center;border-radius:12px;background:linear-gradient(135deg,var(--yellow),var(--orange));color:#111;font-weight:900}.person b{font-size:12px}.stars{margin-top:5px;font-size:10px;color:var(--yellow);letter-spacing:2px}.review p{margin-top:18px;color:var(--muted);font-size:12px;line-height:1.7}.date{margin-top:16px;color:var(--muted-2);font-size:9px;font-weight:700}
+
+    /* FAQ */
+    .faq{display:grid;gap:9px;max-width:900px}.faq-item{border:1px solid var(--border);border-radius:15px;background:rgba(255,255,255,.02);overflow:hidden}.faq-question{display:flex;justify-content:space-between;align-items:center;gap:20px;padding:19px 20px;font-size:12px;font-weight:800;cursor:pointer}.faq-question span{width:28px;height:28px;display:grid;place-items:center;border:1px solid var(--border);border-radius:9px;color:var(--yellow);flex:none;transition:.25s ease}.faq-answer{max-height:0;overflow:hidden;padding:0 20px;color:var(--muted);font-size:11px;line-height:1.8;transition:max-height .35s ease,padding .35s ease}.faq-item.open .faq-answer{max-height:200px;padding:0 20px 20px}.faq-item.open .faq-question span{transform:rotate(45deg);background:rgba(255,212,0,.07)}
+
+    /* CTA */
+    .cta{padding:0 0 100px}.cta-box{position:relative;overflow:hidden;display:flex;align-items:center;justify-content:space-between;gap:35px;padding:34px;border:1px solid var(--border-strong);border-radius:25px;background:linear-gradient(120deg,rgba(255,212,0,.09),rgba(255,106,0,.06) 55%,rgba(255,255,255,.02));box-shadow:var(--shadow-yellow)}.cta-box::after{content:"";position:absolute;width:240px;height:240px;border-radius:50%;right:-80px;top:-100px;background:var(--orange);filter:blur(80px);opacity:.16}.cta-box h2{position:relative;z-index:1;font-family:"Space Grotesk",sans-serif;font-size:clamp(30px,4vw,46px);letter-spacing:-1.3px}.cta-box p{position:relative;z-index:1;margin-top:8px;color:var(--muted);font-size:12px}.cta-buttons{position:relative;z-index:1;display:flex;gap:9px;flex-wrap:wrap}
+
+    /* FOOTER */
+    footer{border-top:1px solid var(--border);padding:24px 0 38px}.footer{width:min(1180px,92%);margin:auto;display:flex;align-items:center;justify-content:space-between;gap:20px;color:var(--muted-2);font-size:9px;font-weight:800;letter-spacing:.6px}.footer strong{color:var(--text)}
+    .toast{position:fixed;left:50%;bottom:22px;z-index:2000;transform:translate(-50%,22px);opacity:0;pointer-events:none;padding:11px 15px;border:1px solid var(--border-strong);border-radius:999px;background:#101010;color:#fff;font-size:10px;font-weight:800;box-shadow:var(--shadow);transition:.3s ease}.toast.show{transform:translate(-50%,0);opacity:1}
+
+    /* REVEAL */
+    .reveal{opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s ease}.reveal.visible{opacity:1;transform:none}
+
+    @media (max-width:1020px){
+      .online{display:none}.hero-inner{grid-template-columns:1fr}.hero-visual{min-height:360px}.visual-card{max-width:520px}.why{grid-template-columns:repeat(2,1fr)}.nav-center{justify-content:flex-end}.nav-links a{padding:10px 12px}
+    }
+    @media (max-width:760px){
+      .section{padding:78px 0}.nav{height:68px}.brand{width:auto}.brand-main{font-size:22px}.brand-sub{font-size:6px;letter-spacing:2px}.social span{display:none}.theme{width:48px}.theme-slider{width:20px;height:20px}.theme-icon{top:7px}.theme-slider{top:5px}.theme-icon:first-child{left:6px}.theme-icon:nth-child(2){right:6px}body.light .theme-slider{left:24px}
+      .nav-center{position:absolute;left:50%;transform:translateX(-50%);top:68px;width:max-content}.nav-links{background:var(--header);backdrop-filter:blur(14px);display:none}.nav.is-open .nav-links{display:flex}.mobile-menu{display:grid}
+      .hero{min-height:auto;padding:142px 0 75px}.hero-title{letter-spacing:-3.8px}.hero-copy{font-size:14px}.hero-visual{min-height:300px}.halo{width:280px;height:280px}.visual-content{padding:17px}.mock-title{font-size:24px}.mock-grid{grid-template-columns:1fr 1fr 1fr}.stats-grid,.services,.reviews{grid-template-columns:1fr}.stats{margin-top:0}.why{grid-template-columns:1fr 1fr}.cta-box{align-items:flex-start;flex-direction:column;padding:26px}.footer{align-items:flex-start;flex-direction:column}
+    }
+    @media (max-width:520px){
+      .container{width:91%}.nav-right{gap:6px}.brand{margin-right:auto}.social{padding:9px}.nav-center{display:none}.mobile-menu{display:grid}.mobile-panel{display:none}.hero-actions,.cta-buttons{width:100%}.hero-actions .btn,.cta-buttons .btn{flex:1}.mock-grid{gap:6px}.mock-box{padding:10px}.mock-box b{font-size:15px}.why{grid-template-columns:1fr}.heading h2{font-size:36px}.footer{font-size:8px}
+    }
+    .mobile-menu{display:none;width:41px;height:37px;place-items:center;border:1px solid var(--border);border-radius:11px;background:var(--surface);cursor:pointer}.mobile-menu span{display:block;width:16px;height:2px;background:var(--text);margin:2px 0;border-radius:2px}
+    @media (max-width:760px){.mobile-menu{display:grid}.nav.is-open .nav-links{display:flex;position:fixed;top:77px;left:50%;transform:translateX(-50%);padding:6px}.nav.is-open .nav-links a{padding:10px 13px}}
+  </style>
+</head>
+<body>
+  <div class="bg-orb one"></div><div class="bg-orb two"></div><div class="bg-orb three"></div>
+
+  <header id="header">
+    <div class="nav" id="nav">
+      <a class="brand" href="#beranda" aria-label="Axcel Store">
+        <span class="brand-main">AXCEL</span>
+        <span class="brand-sub">ROBLOX SERVICES</span>
+      </a>
+
+      <div class="nav-center">
+        <nav class="nav-links" aria-label="Navigasi utama">
+          <a class="active" href="#beranda">Beranda</a>
+          <a href="#layanan">Layanan</a>
+          <a href="#ulasan">Ulasan</a>
+          <a href="#faq">FAQ</a>
+        </nav>
+      </div>
+
+      <div class="nav-right">
+        <div class="online"><span class="online-dot"></span>STORE ONLINE • 24H</div>
+        <a class="social" href="https://www.tiktok.com/@AxcelstoreDIY" target="_blank" rel="noopener" aria-label="TikTok Axcel Store">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M14.4 3c.3 2.1 1.8 3.8 4 4.5v3c-1.5-.1-2.9-.5-4.1-1.3v6c0 3.2-2.5 5.6-5.8 5.6S2.8 18.7 2.8 15.9c0-2.9 2.4-5.2 5.4-5.2.5 0 1 .1 1.5.2v2.8c-.4-.1-.7-.2-1.1-.2-1.5 0-2.8 1-2.8 2.4 0 1.3 1.1 2.2 2.4 2.2 1.5 0 2.6-1.2 2.6-2.8V3h3.6Z" fill="currentColor"/></svg>
+          <span>AxcelstoreDIY</span>
+        </a>
+        <button class="theme" id="themeBtn" type="button" aria-label="Ganti mode warna"><span class="theme-icon">☼</span><span class="theme-icon">◐</span><i class="theme-slider"></i></button>
+        <button class="mobile-menu" id="mobileMenu" type="button" aria-label="Buka menu"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="beranda">
+      <div class="container hero-inner">
+        <div class="hero-copy-wrap reveal">
+          <div class="hero-kicker"><span class="online-dot"></span> AXCEL STORE • ONLINE 24 JAM</div>
+          <h1 class="hero-title"><span>AXCEL</span><span class="accent">STORE</span><span class="outline">RO B L O X  SERVICES</span></h1>
+          <p class="hero-copy">Layanan Roblox dengan tampilan yang simpel, proses order yang jelas, dan akses pemesanan langsung lewat WhatsApp.</p>
+          <div class="hero-actions">
+            <a class="btn" href="https://wa.me/62895414632211?text=Halo%20Axcel%20Store,%20saya%20ingin%20order." target="_blank" rel="noopener">ORDER SEKARANG <span>→</span></a>
+            <a class="btn secondary" href="#layanan">LIHAT LAYANAN</a>
+          </div>
+          <div class="hero-meta"><span><strong>●</strong> WhatsApp aktif</span><span>•</span><span>Respon pemesanan 24H</span><span>•</span><span>Harga transparan</span></div>
+        </div>
+
+        <div class="hero-visual reveal">
+          <div class="halo"></div>
+          <div class="visual-card">
+            <div class="visual-bar"><div class="visual-dots"><span></span><span></span><span></span></div><span class="visual-tag">AXCEL STORE / DASHBOARD</span></div>
+            <div class="visual-content">
+              <div class="mock-title">Roblox <span>Services</span></div>
+              <div class="mock-grid">
+                <div class="mock-box"><b>3</b><small>LAYANAN</small></div>
+                <div class="mock-box"><b>24H</b><small>ONLINE</small></div>
+                <div class="mock-box"><b>Rp25K</b><small>START FROM</small></div>
+              </div>
+              <div class="mock-strip"><span>Pilih layanan lalu order via WhatsApp</span><strong>WA →</strong></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="stats" aria-label="Statistik toko">
+      <div class="container stats-grid">
+        <div class="stat reveal"><div class="stat-icon">◈</div><div><b class="stat-number" data-count="5000" data-suffix="+">0</b><small class="stat-label">Pengunjung website</small></div></div>
+        <div class="stat reveal"><div class="stat-icon">▣</div><div><b class="stat-number" data-count="1873">0</b><small class="stat-label">Pesanan diproses</small></div></div>
+        <div class="stat reveal"><div class="stat-icon">◷</div><div><b class="stat-number">24/7</b><small class="stat-label">Store online</small></div></div>
+      </div>
+    </section>
+
+    <section class="section" id="layanan">
+      <div class="container">
+        <div class="heading reveal"><span class="eyebrow">Layanan</span><h2>Pilih layanan Roblox kamu.</h2><p>Semua kartu menggunakan PNG asli dari folder website. Tidak ada gambar yang diubah atau dikompres.</p></div>
+        <div class="services-wrap">
+          <div class="services" id="services">
+            <article class="service reveal">
+              <div class="service-image"><img src="assets/layanan/ubah-umur.png" alt="Ubah Umur Roblox" loading="lazy"></div>
+              <div class="service-info"><h3>Ubah Umur Roblox</h3><p>Bantuan pengaturan umur akun Roblox sesuai kebutuhan.</p><div class="price">Rp 25.000</div><a class="order" href="https://wa.me/62895414632211?text=Halo%20Axcel%20Store,%20saya%20ingin%20order%20Ubah%20Umur%20Roblox." target="_blank" rel="noopener">ORDER SEKARANG →</a></div>
+            </article>
+            <article class="service hot reveal">
+              <span class="hot-badge">PALING DICARI</span>
+              <div class="service-image"><img src="assets/layanan/on-mic.png" alt="Verifikasi On Mic Roblox" loading="lazy"></div>
+              <div class="service-info"><h3>Verifikasi On Mic</h3><p>Bantuan verifikasi fitur voice chat Roblox.</p><div class="price">Rp 25.000</div><a class="order" href="https://wa.me/62895414632211?text=Halo%20Axcel%20Store,%20saya%20ingin%20order%20Verifikasi%20On%20Mic." target="_blank" rel="noopener">ORDER SEKARANG →</a></div>
+            </article>
+            <article class="service reveal">
+              <div class="service-image"><img src="assets/layanan/ubah-negara.png" alt="Ubah Negara Roblox" loading="lazy"></div>
+              <div class="service-info"><h3>Ubah Negara</h3><p>Bantuan perubahan region akun Roblox.</p><div class="price">Rp 25.000</div><a class="order" href="https://wa.me/62895414632211?text=Halo%20Axcel%20Store,%20saya%20ingin%20order%20Ubah%20Negara%20Roblox." target="_blank" rel="noopener">ORDER SEKARANG →</a></div>
+            </article>
+          </div>
+          <div class="service-controls"><button class="slider-arrow" id="prev" type="button" aria-label="Sebelumnya">‹</button><button class="slider-arrow" id="next" type="button" aria-label="Berikutnya">›</button></div>
+          <div class="dots"><i class="active"></i><i></i><i></i></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="keunggulan">
+      <div class="container">
+        <div class="heading reveal"><span class="eyebrow">Axcel Store</span><h2>Kenapa pilih Axcel?</h2><p>Tampilan lebih rapi, alur order lebih singkat, dan informasi penting tetap terlihat jelas di HP.</p></div>
+        <div class="why">
+          <div class="why-card reveal"><div class="why-icon">◇</div><h3>Harga Jelas</h3><p>Harga setiap layanan ditampilkan langsung pada kartu layanan.</p></div>
+          <div class="why-card reveal"><div class="why-icon">ϟ</div><h3>Online 24H</h3><p>Pemesanan dapat dilakukan kapan saja melalui WhatsApp.</p></div>
+          <div class="why-card reveal"><div class="why-icon">◌</div><h3>Privasi</h3><p>Jangan membagikan password akun kepada siapa pun melalui website.</p></div>
+          <div class="why-card reveal"><div class="why-icon">◉</div><h3>WhatsApp</h3><p>Semua tombol order langsung mengarah ke chat WhatsApp.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="ulasan">
+      <div class="container">
+        <div class="heading reveal"><span class="eyebrow">Ulasan</span><h2>Apa kata pelanggan?</h2><p>Contoh ulasan yang tampil di website. Kamu bisa menggantinya kapan saja dari file HTML.</p></div>
+        <div class="reviews">
+          <div class="review reveal"><div class="person"><div class="avatar">R</div><div><b>RizzStore</b><div class="stars">★★★★★</div></div></div><p>“Prosesnya mudah dan cepat.”</p><div class="date">24 Agu 2026</div></div>
+          <div class="review reveal"><div class="person"><div class="avatar">A</div><div><b>AlyaRBLX</b><div class="stars">★★★★★</div></div></div><p>“Order langsung lewat WhatsApp, gampang.”</p><div class="date">20 Agu 2026</div></div>
+          <div class="review reveal"><div class="person"><div class="avatar">Z</div><div><b>Zenn</b><div class="stars">★★★★★</div></div></div><p>“Pelayanannya mantap.”</p><div class="date">16 Agu 2026</div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="faq">
+      <div class="container">
+        <div class="heading reveal"><span class="eyebrow">FAQ</span><h2>Pertanyaan umum.</h2></div>
+        <div class="faq">
+          <div class="faq-item reveal"><div class="faq-question">Bagaimana cara order?<span>+</span></div><div class="faq-answer">Klik tombol “Order Sekarang” pada layanan yang dipilih. Kamu akan diarahkan ke WhatsApp Axcel Store.</div></div>
+          <div class="faq-item reveal"><div class="faq-question">Berapa harga layanan?<span>+</span></div><div class="faq-answer">Harga layanan yang tampil saat ini adalah Rp25.000 untuk masing-masing layanan.</div></div>
+          <div class="faq-item reveal"><div class="faq-question">Apakah tersedia 24 jam?<span>+</span></div><div class="faq-answer">Store online dan pemesanan tersedia 24 jam. Waktu pengerjaan menyesuaikan jenis layanan.</div></div>
+          <div class="faq-item reveal"><div class="faq-question">Bagaimana menghubungi Axcel?<span>+</span></div><div class="faq-answer">Hubungi WhatsApp 0895-4146-32211 atau TikTok @AxcelstoreDIY.</div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta">
+      <div class="container">
+        <div class="cta-box reveal"><div><h2>Mau order sekarang?</h2><p>Pilih layanan lalu lanjutkan langsung ke WhatsApp Axcel Store.</p></div><div class="cta-buttons"><a class="btn" href="https://wa.me/62895414632211?text=Halo%20Axcel%20Store,%20saya%20ingin%20order." target="_blank" rel="noopener">ORDER VIA WHATSAPP →</a><a class="btn secondary" href="https://www.tiktok.com/@AxcelstoreDIY" target="_blank" rel="noopener">TIKTOK</a></div></div>
+      </div>
+    </section>
+  </main>
+
+  <footer><div class="footer"><span>© 2026 <strong>AXCEL STORE</strong></span><span>ROBLOX SERVICES • STORE ONLINE 24H</span></div></footer>
+  <div class="toast" id="toast">AXCEL STORE ONLINE</div>
+
+  <script>
+    const header=document.getElementById('header');
+    const nav=document.getElementById('nav');
+    const mobileMenu=document.getElementById('mobileMenu');
+    const themeBtn=document.getElementById('themeBtn');
+
+    function updateHeader(){header.classList.toggle('scrolled',window.scrollY>12)}
+    window.addEventListener('scroll',updateHeader,{passive:true});updateHeader();
+
+    const savedTheme=localStorage.getItem('axcel-theme');
+    if(savedTheme==='light') document.body.classList.add('light');
+    themeBtn.addEventListener('click',()=>{
+      document.body.classList.toggle('light');
+      localStorage.setItem('axcel-theme',document.body.classList.contains('light')?'light':'dark');
+      showToast(document.body.classList.contains('light')?'MODE TERANG':'MODE GELAP');
+    });
+
+    mobileMenu.addEventListener('click',()=>nav.classList.toggle('is-open'));
+    document.querySelectorAll('.nav-links a').forEach(a=>a.addEventListener('click',()=>nav.classList.remove('is-open')));
+
+    const sections=[...document.querySelectorAll('main section[id]')];
+    const navLinks=[...document.querySelectorAll('.nav-links a')];
+    const sectionObserver=new IntersectionObserver(entries=>{
+      entries.forEach(entry=>{
+        if(entry.isIntersecting){
+          navLinks.forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+entry.target.id));
+        }
+      });
+    },{rootMargin:'-38% 0px -52% 0px',threshold:0});
+    sections.forEach(s=>sectionObserver.observe(s));
+
+    const revealObserver=new IntersectionObserver(entries=>{
+      entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('visible');revealObserver.unobserve(entry.target)}})
+    },{threshold:.08});
+    document.querySelectorAll('.reveal').forEach(el=>revealObserver.observe(el));
+
+    const counters=document.querySelectorAll('[data-count]');
+    const countObserver=new IntersectionObserver(entries=>{
+      entries.forEach(entry=>{
+        if(!entry.isIntersecting)return;
+        const el=entry.target; const target=Number(el.dataset.count||0); const suffix=el.dataset.suffix||''; const duration=1100; const start=performance.now();
+        function tick(now){const p=Math.min((now-start)/duration,1);const eased=1-Math.pow(1-p,3);el.textContent=Math.floor(target*eased).toLocaleString('id-ID')+suffix;if(p<1)requestAnimationFrame(tick)}
+        requestAnimationFrame(tick);countObserver.unobserve(el);
+      })
+    },{threshold:.65});
+    counters.forEach(el=>countObserver.observe(el));
+
+    document.querySelectorAll('.faq-question').forEach(q=>q.addEventListener('click',()=>q.parentElement.classList.toggle('open')));
+
+    const services=document.getElementById('services');
+    const prev=document.getElementById('prev');const next=document.getElementById('next');const dots=[...document.querySelectorAll('.dots i')];
+    let serviceIndex=0;
+    function mobileSlide(){if(window.innerWidth>760){services.style.transform='';return}services.style.transform=`translateX(-${serviceIndex*100}%)`;dots.forEach((d,i)=>d.classList.toggle('active',i===serviceIndex))}
+    function move(dir){serviceIndex=(serviceIndex+dir+3)%3;mobileSlide()}
+    prev.addEventListener('click',()=>move(-1));next.addEventListener('click',()=>move(1));window.addEventListener('resize',mobileSlide);mobileSlide();
+
+    let toastTimer;
+    function showToast(text){const toast=document.getElementById('toast');toast.textContent=text;toast.classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(()=>toast.classList.remove('show'),1800)}
+  </script>
+</body>
+</html>
